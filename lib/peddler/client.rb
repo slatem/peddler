@@ -132,7 +132,7 @@ module Peddler
       if content.start_with?('<?xml')
         headers['Content-Type'] = 'text/xml'
         @body = content
-      elsif content.start_with?('[37,') || content.start_with?('37,')
+      elsif content.start_with?('[37,') || content.start_with?('37,') || content.start_with?("\x00")
         headers['Content-Type'] = 'application/octet-stream'
         @body = content
       else
