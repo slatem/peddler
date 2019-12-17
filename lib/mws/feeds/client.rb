@@ -33,13 +33,16 @@ module MWS
         run
       end
 
-      def submit_binary_feed(feed_content, feed_type, opts = {})
+      def submit_binary_feed(feed_content, feed_type, feed_options, md5, marketplace, opts = {})
         self.body = feed_content
 
         operation('SubmitFeed')
-            .add(opts)
+            .add('FeedOptions'=>feed_options)
+            .add("ContentMD5Value"=>md5)
+            .add('MarketplaceIdList.Id.1'=>marketplace)
             .add('FeedType' => feed_type)
-            .structure!('MarketplaceIdList', 'Id')
+            .add(opts)
+            .structure!('MarketplaceIdList', 'Id', 'ContentMD5Value', 'FeedOptions')
 
         run
       end
