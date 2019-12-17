@@ -28,7 +28,7 @@ module MWS
         operation('SubmitFeed')
           .add(opts)
           .add('FeedType' => feed_type)
-          .structure!('MarketplaceIdList', 'Id')
+          .structure!('MarketplaceIdList', 'Id', 'ContentMD5Value', 'FeedOptions')
 
         run
       end
