@@ -34,10 +34,9 @@ module MWS
       end
 
       def submit_binary_feed(feed_content, feed_type, feed_options, marketplace, opts = {})
-        #self.body = feed_content
+        self.body = feed_content
 #.add("ContentMD5Value"=>md5)
         operation('SubmitFeed')
-            .add('FeedContent'=>feed_content)
             .add('FeedOptions'=>feed_options)
             .add('MarketplaceIdList.Id.1'=>marketplace)
             .add('FeedType' => feed_type)
