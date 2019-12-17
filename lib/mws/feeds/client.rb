@@ -33,6 +33,17 @@ module MWS
         run
       end
 
+      def submit_binary_feed(feed_content, feed_type, opts = {})
+        self.body = feed_content
+
+        operation('SubmitFeed')
+            .add(opts)
+            .add('FeedType' => feed_type)
+            .structure!('MarketplaceIdList', 'Id')
+
+        run
+      end
+
       # Lists feed submissions
       #
       # @see https://docs.developer.amazonservices.com/en_US/feeds/Feeds_GetFeedSubmissionList.html
