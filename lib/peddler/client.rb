@@ -112,7 +112,9 @@ module Peddler
     # @!visibility private
     def run
       opts = build_options
+      Rails.logger.info opts.inspect
       opts.store(:response_block, Proc.new) if block_given?
+      Rails.logger.info opts.inspect
       res = post(opts)
       self.body = nil if res.status == 200
 

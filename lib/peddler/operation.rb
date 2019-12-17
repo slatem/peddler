@@ -31,7 +31,6 @@ module Peddler
     def store(key, val, parent: nil)
       key = [parent, camelize(key)].compact.join('.')
       val = format_known_types(val)
-
       if val.is_a?(Hash)
         val.each { |keyval| store(*keyval, parent: key) }
       else
